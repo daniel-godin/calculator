@@ -20,3 +20,25 @@ function divide (a, b) {
 function operate(op, c, d) {
     return op(c, d); 
 }
+
+// Create function(s) that display the number of the button clicked and put into the display.
+
+const calculatorDisplay = document.getElementById('calculatorDisplay');
+
+const numButtons = document.querySelectorAll('.number-button');
+const operatorButtons = document.querySelectorAll('.operator-button');
+
+
+function storeVal(val) {
+    return val.value;
+}
+
+
+
+
+
+// numButtons.addEventListener('click', display());
+
+function display() {
+    return calculatorDisplay.innerText = storeVal();
+}

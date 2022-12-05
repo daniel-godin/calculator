@@ -23,22 +23,52 @@ function operate(op, c, d) {
 
 // Create function(s) that display the number of the button clicked and put into the display.
 
-const calculatorDisplay = document.getElementById('calculatorDisplay');
-
+// Variables for DOM manipulation.
+const buttons = document.querySelectorAll('button');
+const display = document.getElementById('calculatorDisplay');
 const numButtons = document.querySelectorAll('.number-button');
-const operatorButtons = document.querySelectorAll('.operator-button');
+const opButtons = document.querySelectorAll('.operator-button');
+const plusButton = document.getElementById('plusButton');
+const minusButton = document.getElementById('minusButton');
+const multiplyButton = document.getElementById('multiplyButton');
+const divideButton = document.getElementById('divideButton');
+const equalsButton = document.getElementById('equalButton');
+
+// Setting up variables to store values for future use in calculations.
+
+let secondOperand = null;
+let operator = null;
 
 
-function storeVal(val) {
-    return val.value;
-}
+// Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
 
 
 
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (button.classList.contains('number-button')) {
+            let firstOperand = button.value;
+            display.innerText = firstOperand;
+        } else if (button.classList.contains('operator-button')) {
+            let opValue = button.value;
+            display.innerText = opValue;
+            console.log(firstOperand);
+        } 
+    })
+})   
 
+    // numButtons.forEach((button) => {
+        
+    //     button.addEventListener('click', () => {
+    //         let firstOperand = button.value;
+    //         display.innerText = firstOperand;
+    //     })
+    // });
 
-// numButtons.addEventListener('click', display());
-
-function display() {
-    return calculatorDisplay.innerText = storeVal();
-}
+    // opButtons.forEach((button) => {
+    //     button.addEventListener('click', () => {
+    //         let opValue = button.value;
+    //         display.innerText = opValue;
+    //         console.log(firstOperand);
+    //     })
+    // });

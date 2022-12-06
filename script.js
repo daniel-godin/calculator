@@ -11,17 +11,22 @@ function multiply(a, b) {
     return a * b;
 }
 
-function divide (a, b) {
+function divide(a, b) {
     return a / b;
 }
 
 // Create a function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
-
-function operate(op, c, d) {
-    return op(c, d); 
+function operate(func, num1, num2) {
+    if (func === 'add') {
+        return add(num1, num2);
+    } else if (func === 'subtract') {
+        return subtract(num1, num2);
+    } else if (func === 'multiply') {
+        return multiply(num1, num2);
+    } else if (func === 'divide') {
+        return divide(num1, num2);
+    }
 }
-
-// Create function(s) that display the number of the button clicked and put into the display.
 
 // Variables for DOM manipulation.
 const buttons = document.querySelectorAll('button');
@@ -40,18 +45,24 @@ const numArray = [];
 let displayValue;
 let operator;
 
-
 // Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.classList.contains('number-button')) {
             display.innerText = button.value;
-            displayValue = button.value;
+            displayValue = parseInt(button.value);
         } else if (button.classList.contains('operator-button')) {
             display.innerText = button.value;
+            operator = button.value;
             numArray.push(displayValue);
             console.log(displayValue);
-            console.table(displayValue);
-        } 
+            console.table([numArray]);
+            console.log(operator);
+        } else if (button.classList.contains('equal-button')) {
+            numArray.push(displayValue);
+            let answer = operate(operator, numArray[0], numArray[1]);
+            console.log(answer);
+          
+        }
     })
 })   

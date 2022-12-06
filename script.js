@@ -1,36 +1,7 @@
-// Create 4 functions. add, subtract, multiply, divide (Start with 2 parameters).
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    return a / b;
-}
-
-// Create a function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
-function operate(func, num1, num2) {
-    if (func === 'add') {
-        return add(num1, num2);
-    } else if (func === 'subtract') {
-        return subtract(num1, num2);
-    } else if (func === 'multiply') {
-        return multiply(num1, num2);
-    } else if (func === 'divide') {
-        return divide(num1, num2);
-    }
-}
-
 // Variables for DOM manipulation.
 const buttons = document.querySelectorAll('button');
-const display = document.getElementById('calculatorDisplay');
+const mainDisplay = document.getElementById('mainDisplay');
+const secondaryDisplay = document.getElementById('secondaryDisplay');
 const numButtons = document.querySelectorAll('.number-button');
 const opButtons = document.querySelectorAll('.operator-button');
 const plusButton = document.getElementById('plusButton');
@@ -41,28 +12,83 @@ const equalsButton = document.getElementById('equalButton');
 
 // Setting up variables to store values for future use in calculations.
 const numArray = [];
-
-let displayValue;
+let firstNumber;
+let secondNumber;
 let operator;
 
 // Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.classList.contains('number-button')) {
-            display.innerText = button.value;
-            displayValue = parseInt(button.value);
+            numArray.push(button.value);
+            mainDisplay.innerText = numArray.join("");
         } else if (button.classList.contains('operator-button')) {
-            display.innerText = button.value;
             operator = button.value;
-            numArray.push(displayValue);
-            console.log(displayValue);
-            console.table([numArray]);
-            console.log(operator);
+            firstNumber = numArray.join("");
+            firstNumber = parseFloat(firstNumber);
+            numArray.length = 0;
+            mainDisplay.innerText = ` `;
+            secondaryDisplay.innerText = `${firstNumber} ${operator}`;
         } else if (button.classList.contains('equal-button')) {
-            numArray.push(displayValue);
-            let answer = operate(operator, numArray[0], numArray[1]);
+            secondNumber = numArray.join("");
+            secondNumber = parseFloat(secondNumber);
+            secondaryDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} =`;
+            console.log(firstNumber);
+            console.log(secondNumber);
+            console.log(operator);
+            numArray.length = 0;
+            let answer = operate(operator, firstNumber, secondNumber);
             console.log(answer);
-          
+            mainDisplay.innerText = answer;
+        } else if (button.classList.contains('clear-button')) {
+            clear();
         }
     })
-})   
+})  
+
+
+// Create a function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
+function operate(func, num1, num2) {
+    if (func === '+') {
+        return add(num1, num2);
+    } else if (func === '-') {
+        return subtract(num1, num2);
+    } else if (func === '*') {
+        return multiply(num1, num2);
+    } else if (func === '/') {
+        if ((num1 || num2) != 0) {
+            return divide(num1, num2);
+        } else {
+            return "Can't Divide By Zero";
+        }
+    }
+}
+
+// function that clears everything
+
+function clear() {
+    mainDisplay.innerText = "";
+    secondaryDisplay.innerText = "";
+    firstNumber = "";
+    secondNumber = "";
+    operator = null;
+    numArray.length = 0;
+}
+
+// Create 4 functions. add, subtract, multiply, divide (Start with 2 parameters).
+function add(a, b) {
+    return a + b;
+}
+function subtract(a, b) {
+    return a - b;
+}
+function multiply(a, b) {
+    return a * b;
+}
+function divide(a, b) {
+    if (a || b != 0) {
+        return a / b;
+    } else {
+        return "Cannot divide by zero";
+    } 
+}

@@ -37,9 +37,8 @@ const equalsButton = document.getElementById('equalButton');
 // Setting up variables to store values for future use in calculations.
 const numArray = [];
 
-
-let secondOperand = null;
-let operator = null;
+let displayValue;
+let operator;
 
 
 // Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
@@ -47,9 +46,12 @@ buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.classList.contains('number-button')) {
             display.innerText = button.value;
+            displayValue = button.value;
         } else if (button.classList.contains('operator-button')) {
             display.innerText = button.value;
-            console.log(firstOperand);
+            numArray.push(displayValue);
+            console.log(displayValue);
+            console.table(displayValue);
         } 
     })
 })   

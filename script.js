@@ -35,40 +35,21 @@ const divideButton = document.getElementById('divideButton');
 const equalsButton = document.getElementById('equalButton');
 
 // Setting up variables to store values for future use in calculations.
+const numArray = [];
+
 
 let secondOperand = null;
 let operator = null;
 
 
 // Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
-
-
-
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.classList.contains('number-button')) {
-            let firstOperand = button.value;
-            display.innerText = firstOperand;
+            display.innerText = button.value;
         } else if (button.classList.contains('operator-button')) {
-            let opValue = button.value;
-            display.innerText = opValue;
+            display.innerText = button.value;
             console.log(firstOperand);
         } 
     })
 })   
-
-    // numButtons.forEach((button) => {
-        
-    //     button.addEventListener('click', () => {
-    //         let firstOperand = button.value;
-    //         display.innerText = firstOperand;
-    //     })
-    // });
-
-    // opButtons.forEach((button) => {
-    //     button.addEventListener('click', () => {
-    //         let opValue = button.value;
-    //         display.innerText = opValue;
-    //         console.log(firstOperand);
-    //     })
-    // });

@@ -35,13 +35,11 @@ buttons.forEach((button) => {
                 firstNumber = parseFloat(firstNumber);
                 mainDisplay.innerText = " ";
                 secondaryDisplay.innerText = `${firstNumber} ${operator}`;
-            } else if (answer != undefined) {
-                secondaryDisplay.innerText = `${firstNumber} ${operator}`
 
             } else if (answer != undefined && numArray.length > 0) {
                 secondNumber = numArray.join("");
                 secondNumber = parseFloat(secondNumber);
-
+                console.log("Working");
                 numArray.length = 0;
                 answer = operate(operator, firstNumber, secondNumber)
                 mainDisplay.innerText = answer;
@@ -49,8 +47,10 @@ buttons.forEach((button) => {
     
                 secondNumber = undefined;
                
+            } else if (answer != undefined) {
+                secondaryDisplay.innerText = `${firstNumber} ${operator}`;
+                console.log("Here?");
             }
-
             numArray.length = 0;
 
         } else if (button.classList.contains('equal-button')) {

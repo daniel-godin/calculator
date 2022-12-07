@@ -29,8 +29,11 @@ buttons.forEach((button) => {
             }
 
         } else if (button.classList.contains('operator-button')) {
-            operator = button.value;
+            // operator = button.value;
             if (answer == undefined) {
+                operator = button.value;
+
+
                 firstNumber = numArray.join("");
                 firstNumber = parseFloat(firstNumber);
                 mainDisplay.innerText = " ";
@@ -42,12 +45,14 @@ buttons.forEach((button) => {
                 console.log("Working");
                 numArray.length = 0;
                 answer = operate(operator, firstNumber, secondNumber)
+                operator = button.value;
                 mainDisplay.innerText = answer;
                 firstNumber = parseFloat(answer);
     
                 secondNumber = undefined;
                
             } else if (answer != undefined) {
+                operator = button.value;
                 secondaryDisplay.innerText = `${firstNumber} ${operator}`;
                 console.log("Here?");
             }

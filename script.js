@@ -36,13 +36,18 @@ buttons.forEach((button) => {
                 mainDisplay.innerText = " ";
                 secondaryDisplay.innerText = `${firstNumber} ${operator}`;
             } else if (answer != undefined) {
-                secondaryDisplay = `${firstNumber} ${operator}`
-                mainDisplay.innerText = `${operator}`;
-    
-                secondNumber = numArray.join("").push();
+                secondaryDisplay.innerText = `${firstNumber} ${operator}`
+
+            } else if (answer != undefined && numArray.length > 0) {
+                secondNumber = numArray.join("");
                 secondNumber = parseFloat(secondNumber);
-            } else if (secondNumber != undefined) {
-                answer = operate(operator, answer, secondNumber)
+
+                numArray.length = 0;
+                answer = operate(operator, firstNumber, secondNumber)
+                mainDisplay.innerText = answer;
+                firstNumber = parseFloat(answer);
+    
+                secondNumber = undefined;
                
             }
 
@@ -51,15 +56,13 @@ buttons.forEach((button) => {
         } else if (button.classList.contains('equal-button')) {
             secondNumber = numArray.join("");
             secondNumber = parseFloat(secondNumber);
-            console.log(firstNumber);
-            console.log(secondNumber);
-            console.log(operator);
             numArray.length = 0;
             answer = operate(operator, firstNumber, secondNumber);
-            console.log(answer);
+            // secondaryDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} =` // No need for this, because the operate() function does this with the passed variables.
             mainDisplay.innerText = answer;
             firstNumber = parseFloat(answer);
             secondNumber = undefined;
+
         } else if (button.classList.contains('clear-button')) {
             clear();
         } else if (button.classList.contains('backspace-button')) {
@@ -74,7 +77,6 @@ buttons.forEach((button) => {
 function operate(func, num1, num2) {
     secondaryDisplay.innerText = `${num1} ${func} ${num2} =`
     if (func === '+') {
-        // secondaryDisplay.innerText = `${num1} ${func} ${num2} =`
         return add(num1, num2);
     } else if (func === '-') {
         return subtract(num1, num2);

@@ -32,31 +32,35 @@ buttons.forEach((button) => {
             // operator = button.value;
             if (answer == undefined) {
                 operator = button.value;
-
-
                 firstNumber = numArray.join("");
                 firstNumber = parseFloat(firstNumber);
                 mainDisplay.innerText = " ";
                 secondaryDisplay.innerText = `${firstNumber} ${operator}`;
+                numArray.length = 0;
 
-            } else if (answer != undefined && numArray.length > 0) {
+            } else if (numArray.length > 0) {    
+            // } else if (answer != undefined && numArray.length > 0) {
                 secondNumber = numArray.join("");
                 secondNumber = parseFloat(secondNumber);
                 console.log("Working");
                 numArray.length = 0;
                 answer = operate(operator, firstNumber, secondNumber)
+                // secondaryDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} =`
                 operator = button.value;
-                mainDisplay.innerText = answer;
+                mainDisplay.innerText = `${answer} ${operator}`;
                 firstNumber = parseFloat(answer);
+                
     
                 secondNumber = undefined;
                
             } else if (answer != undefined) {
                 operator = button.value;
                 secondaryDisplay.innerText = `${firstNumber} ${operator}`;
+                mainDisplay.innerText = ` `;
                 console.log("Here?");
+                
             }
-            numArray.length = 0;
+            // numArray.length = 0;
 
         } else if (button.classList.contains('equal-button')) {
             secondNumber = numArray.join("");

@@ -98,7 +98,7 @@ function clear() {
     secondaryDisplay.innerText = "";
     firstNumber = "";
     secondNumber = "";
-    operator = null;
+    operator = "";
     numArray.length = 0;
 }
 

@@ -34,27 +34,19 @@ buttons.forEach((button) => {
                 firstNumber = numArray.join("");
                 firstNumber = parseFloat(firstNumber);
                 mainDisplay.innerText = " ";
+                secondaryDisplay.innerText = `${firstNumber} ${operator}`;
             } else if (answer != undefined) {
-                firstNumber = parseFloat(answer);
-                secondaryDisplay = `${firstNumber} ${operator} ${numArray.join("")}`
+                secondaryDisplay = `${firstNumber} ${operator}`
+                mainDisplay.innerText = `${operator}`;
     
                 secondNumber = numArray.join("").push();
                 secondNumber = parseFloat(secondNumber);
             } else if (secondNumber != undefined) {
                 answer = operate(operator, answer, secondNumber)
+               
             }
 
             numArray.length = 0;
-
-            if (answer == undefined) {
-                
-                secondaryDisplay.innerText = `${firstNumber} ${operator}`;
-            } else if (answer != undefined) {
-                secondaryDisplay.innerText = `${answer} ${operator}`;
-                firstNumber = answer;
-                
-                answer = operate(operator, firstNumber, secondNumber);
-            } 
 
         } else if (button.classList.contains('equal-button')) {
             secondNumber = numArray.join("");
@@ -70,9 +62,12 @@ buttons.forEach((button) => {
             secondNumber = undefined;
         } else if (button.classList.contains('clear-button')) {
             clear();
+        } else if (button.classList.contains('backspace-button')) {
+            numArray.pop();
+            secondaryDisplay.innerText = numArray.join("");
         }
     })
-})  
+})
 
 
 // Create a function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.

@@ -15,31 +15,59 @@ const numArray = [];
 let firstNumber;
 let secondNumber;
 let operator;
+let answer;
 
 // Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.classList.contains('number-button')) {
             numArray.push(button.value);
-            mainDisplay.innerText = numArray.join("");
+            secondaryDisplay.innerText = numArray.join("");
+
+            if (firstNumber != undefined) {
+                secondaryDisplay.innerText = `${firstNumber} ${operator} ${numArray.join("")}`;
+            }
+
         } else if (button.classList.contains('operator-button')) {
             operator = button.value;
-            firstNumber = numArray.join("");
-            firstNumber = parseFloat(firstNumber);
+            if (answer == undefined) {
+                firstNumber = numArray.join("");
+                firstNumber = parseFloat(firstNumber);
+                mainDisplay.innerText = " ";
+            } else if (answer != undefined) {
+                firstNumber = parseFloat(answer);
+                secondaryDisplay = `${firstNumber} ${operator} ${numArray.join("")}`
+    
+                secondNumber = numArray.join("").push();
+                secondNumber = parseFloat(secondNumber);
+            } else if (secondNumber != undefined) {
+                answer = operate(operator, answer, secondNumber)
+            }
+
             numArray.length = 0;
-            mainDisplay.innerText = ` `;
-            secondaryDisplay.innerText = `${firstNumber} ${operator}`;
+
+            if (answer == undefined) {
+                
+                secondaryDisplay.innerText = `${firstNumber} ${operator}`;
+            } else if (answer != undefined) {
+                secondaryDisplay.innerText = `${answer} ${operator}`;
+                firstNumber = answer;
+                
+                answer = operate(operator, firstNumber, secondNumber);
+            } 
+
         } else if (button.classList.contains('equal-button')) {
             secondNumber = numArray.join("");
             secondNumber = parseFloat(secondNumber);
-            secondaryDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} =`;
             console.log(firstNumber);
             console.log(secondNumber);
             console.log(operator);
             numArray.length = 0;
-            let answer = operate(operator, firstNumber, secondNumber);
+            answer = operate(operator, firstNumber, secondNumber);
             console.log(answer);
             mainDisplay.innerText = answer;
+            firstNumber = parseFloat(answer);
+            secondNumber = undefined;
         } else if (button.classList.contains('clear-button')) {
             clear();
         }
@@ -49,7 +77,9 @@ buttons.forEach((button) => {
 
 // Create a function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(func, num1, num2) {
+    secondaryDisplay.innerText = `${num1} ${func} ${num2} =`
     if (func === '+') {
+        // secondaryDisplay.innerText = `${num1} ${func} ${num2} =`
         return add(num1, num2);
     } else if (func === '-') {
         return subtract(num1, num2);

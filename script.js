@@ -18,6 +18,19 @@ let secondNumber;
 let operator;
 let answer;
 
+
+// Adding Keyboard support to calculator.  I wonder if I can send both keyboard and click event listeners to a function with all the rest?  Hmmm, let's try.
+window.addEventListener('keydown', (event) => {
+    let keyName = event.key;
+    // loop through button array, if keyName === button[i].value do something.
+    for (let i = 0; i < buttons.length; i++) {
+        if (keyName === buttons[i].value) {
+            event.preventDefault();
+            buttons[i].click();
+        }
+    }         
+})
+
 // Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -130,7 +143,6 @@ buttons.forEach((button) => {
         }
     })
 })
-
 
 // Create a function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(func, num1, num2) {

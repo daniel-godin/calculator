@@ -5,19 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator - By Daniel Godin - For The Odin Project Curriculum</title>
-    <link rel="stylesheeet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-<div class="page-container">
-    <div class="header-container">
+
+    <!-- <div class="header-container">
         <h1>Calculator - By Daniel Godin - For The Odin Project Curriculum</h1>
-    </div>
+    </div> -->
+<div class="page-container">
+
 
     <div class="content-container" id="calculatorContainer">
+
         <div class="display" id="mainDisplay">
         </div>
 
-        <div id="calculatorButtonsContainer">
+        <div id="numbersContainer">
             <button class="number-button" id="one" value="1">1</button>
             <button class="number-button" id="two" value="2">2</button>
             <button class="number-button" id="three" value="3">3</button>
@@ -27,22 +30,28 @@
             <button class="number-button" id="seven" value="7">7</button>
             <button class="number-button" id="eight" value="8">8</button>
             <button class="number-button" id="nine" value="9">9</button>
-            <button class="number-button" id="zero" value="0">0</button>
-
             <button class="decimal-button" id="decimalButton" value=".">.</button>
+            <button class="number-button" id="zero" value="0">0</button>
+            <button class="backspace-button" id="backspaceButton">Back</button>
+        </div>
 
+            
 
+        <div id="operatorContainer">
             <button class="operator-button" id="plusButton" value="+">+</button>
             <button class="operator-button" id="minusButton" value="-">-</button>
             <button class="operator-button" id="multiplyButton" value="*">*</button>
             <button class="operator-button" id="divideButton" value="/">/</button>
-
-            <button class="equal-button" id="equalsButton" value="=">=</button>
-
             <button class="clear-button" id="clearButton">Clear</button>
-            <button class="backspace-button" id="backspaceButton">Backspace</button>
-
         </div>
+
+        <div id="equalsContainer">
+            <button class="equal-button" id="equalsButton" value="=">=</button>
+        </div>
+            
+            
+
+        
 
     </div>
 

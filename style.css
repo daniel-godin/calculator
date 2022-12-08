@@ -1,9 +1,11 @@
 html {
     box-sizing: border-box;
+    height: 100vh;
 }
 
 body {
     height: 100vh;
+    
 }
 
 * {
@@ -11,7 +13,31 @@ body {
     padding: 0;
 }
 
-.display {
+.page-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calculatorContainer {
+    border: 1px solid red;
+}
+
+#mainDisplay {
     height: 10px;
     width: 80vw;
+    border: 1px solid blue;
+}
+
+#numbersContainer {
+    border: 1px solid green;
+}
+
+#operatorContainer {
+    border: 1px solid yellow;
+}
+
+#equalsContainer {
+    border: 1px solid orange;
 }

@@ -3,6 +3,7 @@ const buttons = document.querySelectorAll('button');
 const mainDisplay = document.getElementById('mainDisplay');
 const secondaryDisplay = document.getElementById('secondaryDisplay');
 const numButtons = document.querySelectorAll('.number-button');
+const decimalButton = document.getElementById('decimalButton');
 const opButtons = document.querySelectorAll('.operator-button');
 const plusButton = document.getElementById('plusButton');
 const minusButton = document.getElementById('minusButton');
@@ -27,6 +28,25 @@ buttons.forEach((button) => {
             } else if (firstNumber == undefined) {
                 numArray.push(button.value);
                 mainDisplay.innerText = numArray.join("");
+            }
+        }
+
+        if (button.classList.contains('decimal-button')) {
+            if (firstNumber != undefined) {
+                    if (numArray.includes(".")) {
+                        mainDisplay.innerText = `${firstNumber} ${operator} ${numArray.join("")}`
+                    } else {
+                        numArray.push(button.value);
+                        mainDisplay.innerText = `${firstNumber} ${operator} ${numArray.join("")}`
+                    }
+
+            } else if (firstNumber == undefined) {
+                if (numArray.includes(".")) {
+                    mainDisplay.innerText = numArray.join("");
+                } else {
+                    numArray.push(button.value);
+                    mainDisplay.innerText = numArray.join("");
+                }
             }
 
         } else if (button.classList.contains('operator-button')) {

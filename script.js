@@ -82,8 +82,10 @@ buttons.forEach((button) => {
             clear();
 
         } else if (button.classList.contains('backspace-button')) {
+            // save mainDisplay.innerText in a variable, then remove the last number in the string, then recreate the mainDisplay from that.
+            mainDisplay.innerText = mainDisplay.innerText.substring(0, mainDisplay.innerText.length - 1);
+            console.log(mainDisplay.innerText);
             numArray.pop();
-            mainDisplay.innerText = numArray.join("");
         }
     })
 })

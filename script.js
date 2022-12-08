@@ -21,62 +21,55 @@ let answer;
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         if (button.classList.contains('number-button')) {
-            numArray.push(button.value);
-            secondaryDisplay.innerText = numArray.join("");
-
             if (firstNumber != undefined) {
-                secondaryDisplay.innerText = `${firstNumber} ${operator} ${numArray.join("")}`;
+                numArray.push(button.value);
+                mainDisplay.innerText = `${firstNumber} ${operator} ${numArray.join("")}`
+            } else if (firstNumber == undefined) {
+                numArray.push(button.value);
+                mainDisplay.innerText = numArray.join("");
             }
 
         } else if (button.classList.contains('operator-button')) {
-            // operator = button.value;
-            if (answer == undefined) {
-                operator = button.value;
-                firstNumber = numArray.join("");
-                firstNumber = parseFloat(firstNumber);
-                mainDisplay.innerText = " ";
-                secondaryDisplay.innerText = `${firstNumber} ${operator}`;
-                numArray.length = 0;
-
-            } else if (numArray.length > 0) {    
-            // } else if (answer != undefined && numArray.length > 0) {
+            if (numArray.length > 0 && firstNumber != undefined) { // Uses this if the operate() function has been run.  Thus, user is running a calculation on the answer, AND has already input some numbers.
                 secondNumber = numArray.join("");
                 secondNumber = parseFloat(secondNumber);
-                console.log("Working");
                 numArray.length = 0;
                 answer = operate(operator, firstNumber, secondNumber)
-                // secondaryDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} =`
                 operator = button.value;
                 mainDisplay.innerText = `${answer} ${operator}`;
                 firstNumber = parseFloat(answer);
-                
-    
                 secondNumber = undefined;
+                console.log("test1");
                
-            } else if (answer != undefined) {
+            } else if (answer != undefined && numArray.length < 1) { // function operate() has been run and the answer is now the firstNumber.  User has not input any numbers yet for a secondNumber variable.
                 operator = button.value;
-                secondaryDisplay.innerText = `${firstNumber} ${operator}`;
-                mainDisplay.innerText = ` `;
-                console.log("Here?");
+                mainDisplay.innerText = `${firstNumber} ${operator}`;
+                console.log("test2");
                 
+            } else if (answer == undefined) { // Uses this if the operate() function has not been run yet.
+                operator = button.value;
+                firstNumber = numArray.join("");
+                firstNumber = parseFloat(firstNumber);
+                mainDisplay.innerText = `${firstNumber} ${operator}`;
+                numArray.length = 0;
+                console.log("test3");
             }
-            // numArray.length = 0;
 
         } else if (button.classList.contains('equal-button')) {
             secondNumber = numArray.join("");
             secondNumber = parseFloat(secondNumber);
             numArray.length = 0;
             answer = operate(operator, firstNumber, secondNumber);
-            // secondaryDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} =` // No need for this, because the operate() function does this with the passed variables.
-            mainDisplay.innerText = answer;
+            mainDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} = ${answer}`
             firstNumber = parseFloat(answer);
             secondNumber = undefined;
 
         } else if (button.classList.contains('clear-button')) {
             clear();
+
         } else if (button.classList.contains('backspace-button')) {
             numArray.pop();
-            secondaryDisplay.innerText = numArray.join("");
+            mainDisplay.innerText = numArray.join("");
         }
     })
 })
@@ -84,7 +77,6 @@ buttons.forEach((button) => {
 
 // Create a function that takes an operator and 2 numbers and then calls one of the above functions on the numbers.
 function operate(func, num1, num2) {
-    secondaryDisplay.innerText = `${num1} ${func} ${num2} =`
     if (func === '+') {
         return add(num1, num2);
     } else if (func === '-') {
@@ -101,13 +93,12 @@ function operate(func, num1, num2) {
 }
 
 // function that clears everything
-
 function clear() {
     mainDisplay.innerText = "";
-    secondaryDisplay.innerText = "";
-    firstNumber = "";
-    secondNumber = "";
-    operator = "";
+    firstNumber = undefined;
+    secondNumber = undefined;
+    operator = undefined;
+    answer = undefined;
     numArray.length = 0;
 }
 

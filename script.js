@@ -30,15 +30,16 @@ buttons.forEach((button) => {
             }
 
         } else if (button.classList.contains('operator-button')) {
-            if (numArray.length > 0 && firstNumber != undefined) { // Uses this if the operate() function has been run.  Thus, user is running a calculation on the answer, AND has already input some numbers.
+            if (numArray.length < 1 && firstNumber == undefined) {
+                mainDisplay.innerText = "";
+            } else if (numArray.length > 0 && firstNumber != undefined) { // Uses this if the operate() function has been run.  Thus, user is running a calculation on the answer, AND has already input some numbers.
                 secondNumber = numArray.join("");
                 secondNumber = parseFloat(secondNumber);
                 numArray.length = 0;
                 answer = operate(operator, firstNumber, secondNumber);
-                if (answer % 1 != 0) {
+                if (answer % 1 != 0) { // Checks to see if the answer has a long decimal.  If it does, it changes the result to round to 2 decimal places, preventing overload.
                     answer = answer.toFixed(2);
                 }
-                
                 operator = button.value;
                 mainDisplay.innerText = `${answer} ${operator}`;
                 firstNumber = parseFloat(answer);
@@ -60,17 +61,22 @@ buttons.forEach((button) => {
             }
 
         } else if (button.classList.contains('equal-button')) {
-            secondNumber = numArray.join("");
-            secondNumber = parseFloat(secondNumber);
-            numArray.length = 0;
-            answer = operate(operator, firstNumber, secondNumber);
-            if (answer % 1 != 0) {
-                answer = answer.toFixed(2);
-            }
-            mainDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} = ${answer}`
+            if (firstNumber == undefined && operator == undefined) {
+                mainDisplay.innerText = `${numArray.join("")}`;
 
-            firstNumber = parseFloat(answer);
-            secondNumber = undefined;
+            } else if (firstNumber != undefined && operator != undefined && numArray.length > 0) {
+                secondNumber = numArray.join("");
+                secondNumber = parseFloat(secondNumber);
+                numArray.length = 0;
+                answer = operate(operator, firstNumber, secondNumber);
+                if (answer % 1 != 0) {
+                    answer = answer.toFixed(2);
+                }
+                mainDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} = ${answer}`
+
+                firstNumber = parseFloat(answer);
+                secondNumber = undefined;
+            }
 
         } else if (button.classList.contains('clear-button')) {
             clear();

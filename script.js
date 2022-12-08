@@ -37,14 +37,25 @@ buttons.forEach((button) => {
                 secondNumber = parseFloat(secondNumber);
                 numArray.length = 0;
                 answer = operate(operator, firstNumber, secondNumber);
-                if (answer % 1 != 0) { // Checks to see if the answer has a long decimal.  If it does, it changes the result to round to 2 decimal places, preventing overload.
+                if (answer == Infinity) {
+                    mainDisplay.innerText = "You can't divide by zero!  Try Again!";
+                    firstNumber = undefined;
+                    secondNumber = undefined;
+                    operator = undefined;
+                    answer = undefined;
+                    numArray.length = 0;
+                } else if (answer % 1 != 0) {
                     answer = answer.toFixed(2);
+                    operator = button.value;
+                    mainDisplay.innerText = `${answer} ${operator}`;
+                    firstNumber = parseFloat(answer);
+                    secondNumber = undefined;
+                } else if (answer % 1 == 0) {
+                    operator = button.value;
+                    mainDisplay.innerText = `${answer} ${operator}`;
+                    firstNumber = parseFloat(answer);
+                    secondNumber = undefined;
                 }
-                operator = button.value;
-                mainDisplay.innerText = `${answer} ${operator}`;
-                firstNumber = parseFloat(answer);
-                secondNumber = undefined;
-                console.log("test1");
                
             } else if (answer != undefined && numArray.length < 1) { // function operate() has been run and the answer is now the firstNumber.  User has not input any numbers yet for a secondNumber variable.
                 operator = button.value;

@@ -9,7 +9,8 @@ const plusButton = document.getElementById('plusButton');
 const minusButton = document.getElementById('minusButton');
 const multiplyButton = document.getElementById('multiplyButton');
 const divideButton = document.getElementById('divideButton');
-const equalsButton = document.getElementById('equalButton');
+const equalsButton = document.getElementById('equalsButton');
+const backspaceButton = document.getElementById('backspaceButton');
 
 // Setting up variables to store values for future use in calculations.
 const numArray = [];
@@ -23,12 +24,31 @@ let answer;
 window.addEventListener('keydown', (event) => {
     let keyName = event.key;
     // loop through button array, if keyName === button[i].value do something.
-    for (let i = 0; i < buttons.length; i++) {
-        if (keyName === buttons[i].value) {
-            event.preventDefault();
-            buttons[i].click();
-        }
-    }         
+
+    if (keyName === "Backspace") {
+        event.preventDefault();
+        backspaceButton.click();
+        } else if (keyName === "Enter") {
+        event.preventDefault();
+        equalsButton.click();
+        } else {
+
+            for (let i = 0; i < buttons.length; i++) {
+            // if (keyName === "Backspace") {
+            //     event.preventDefault();
+            //     backspaceButton.click();
+            // } else if (keyName === "Enter") {
+            //     event.preventDefault();
+            //     equalsButton.click();
+            // } else 
+                if (keyName === buttons[i].value) {
+
+                    event.preventDefault();
+                    buttons[i].click();
+            
+                }
+            }    
+        }     
 })
 
 // Function which changes display to match the value of the number button clicked.  Stores value in variable numValue.
@@ -135,10 +155,18 @@ buttons.forEach((button) => {
             clear();
 
         } else if (button.classList.contains('backspace-button')) {
-            // save mainDisplay.innerText in a variable, then remove the last number in the string, then recreate the mainDisplay from that.
-            mainDisplay.innerText = mainDisplay.innerText.substring(0, mainDisplay.innerText.length - 1);
-            console.log(mainDisplay.innerText);
-            numArray.pop();
+            console.log(mainDisplay.innerText.length);
+            if (mainDisplay.innerText.length === 1) {
+                clear();
+            } else {
+                // save mainDisplay.innerText in a variable, then remove the last number in the string, then recreate the mainDisplay from that.
+                mainDisplay.innerText = mainDisplay.innerText.substring(0, mainDisplay.innerText.length - 1);
+                console.log(mainDisplay.innerText);
+                numArray.pop();
+            }
+
+
+
         }
     })
 })

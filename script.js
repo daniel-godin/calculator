@@ -34,7 +34,11 @@ buttons.forEach((button) => {
                 secondNumber = numArray.join("");
                 secondNumber = parseFloat(secondNumber);
                 numArray.length = 0;
-                answer = operate(operator, firstNumber, secondNumber)
+                answer = operate(operator, firstNumber, secondNumber);
+                if (answer % 1 != 0) {
+                    answer = answer.toFixed(2);
+                }
+                
                 operator = button.value;
                 mainDisplay.innerText = `${answer} ${operator}`;
                 firstNumber = parseFloat(answer);
@@ -60,7 +64,11 @@ buttons.forEach((button) => {
             secondNumber = parseFloat(secondNumber);
             numArray.length = 0;
             answer = operate(operator, firstNumber, secondNumber);
+            if (answer % 1 != 0) {
+                answer = answer.toFixed(2);
+            }
             mainDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} = ${answer}`
+
             firstNumber = parseFloat(answer);
             secondNumber = undefined;
 

@@ -69,13 +69,23 @@ buttons.forEach((button) => {
                 secondNumber = parseFloat(secondNumber);
                 numArray.length = 0;
                 answer = operate(operator, firstNumber, secondNumber);
-                if (answer % 1 != 0) {
+                if (answer == Infinity) {
+                    mainDisplay.innerText = "You can't divide by zero!  Try Again!";
+                    firstNumber = undefined;
+                    secondNumber = undefined;
+                    operator = undefined;
+                    answer = undefined;
+                    numArray.length = 0;
+                } else if (answer % 1 != 0) {
                     answer = answer.toFixed(2);
+                    mainDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} = ${answer}`
+                    firstNumber = parseFloat(answer);
+                    secondNumber = undefined;
+                } else if (answer % 1 == 0) {
+                    mainDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} = ${answer}`
+                    firstNumber = parseFloat(answer);
+                    secondNumber = undefined;
                 }
-                mainDisplay.innerText = `${firstNumber} ${operator} ${secondNumber} = ${answer}`
-
-                firstNumber = parseFloat(answer);
-                secondNumber = undefined;
             }
 
         } else if (button.classList.contains('clear-button')) {
@@ -100,11 +110,7 @@ function operate(func, num1, num2) {
     } else if (func === '*') {
         return multiply(num1, num2);
     } else if (func === '/') {
-        if ((num1 || num2) != 0) {
-            return divide(num1, num2);
-        } else {
-            return "Can't Divide By Zero";
-        }
+        return divide(num1, num2);
     }
 }
 
@@ -129,9 +135,5 @@ function multiply(a, b) {
     return a * b;
 }
 function divide(a, b) {
-    if (a || b != 0) {
-        return a / b;
-    } else {
-        return "Cannot divide by zero";
-    } 
+    return a / b;
 }

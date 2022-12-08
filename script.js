@@ -93,7 +93,7 @@ buttons.forEach((button) => {
             } else if (answer != undefined && numArray.length < 1) { // function operate() has been run and the answer is now the firstNumber.  User has not input any numbers yet for a secondNumber variable.
                 operator = button.value;
                 mainDisplay.innerText = `${firstNumber} ${operator}`;
-                console.log("test2");
+
                 
             } else if (answer == undefined) { // Uses this if the operate() function has not been run yet.
                 operator = button.value;
@@ -101,7 +101,6 @@ buttons.forEach((button) => {
                 firstNumber = parseFloat(firstNumber);
                 mainDisplay.innerText = `${firstNumber} ${operator}`;
                 numArray.length = 0;
-                console.log("test3");
             }
 
         } else if (button.classList.contains('equal-button')) {

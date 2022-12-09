@@ -5,7 +5,6 @@ html {
 
 body {
     height: 100vh;
-    
 }
 
 * {
@@ -31,73 +30,54 @@ body {
     grid-gap: .5em;
     height: 70vh;
     aspect-ratio: 4 / 6;
-
-
-
 }
 
 #mainDisplay {
-    /* background-color: #F2690D; */
     box-shadow: 0px 0px 5px 0px inset;
     grid-area: 1 / 1 / 2 / 5; /* row-start / col-start / row-end / col-end */
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: 1fr;
-    font-size: 2.5rem;
-    justify-items: end;
-    align-items: end;
+    width: 100%;
     border-radius: 10px;
+    font-size: 2rem;
+    text-align: right;
+    overflow-wrap: break-word;
+    white-space: normal;
 }
 
 #numbersContainer {
-    /* background-color: hsla(24, 90%, 50%, .5); */
     box-shadow: 0px 0px 2px 0px;
-    /* padding: 10px; */
     grid-area: 2 / 1 / 6 / 4;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(3, 1fr);
-    /* grid-gap: 1em; */
     border-radius: 7.5px;
 }
 
 #operatorContainer {
-    /* background-color: #F2690D; */
     box-shadow: 0px 0px 2px 0px;
-    /* padding: 10px; */
     grid-area: 2 / 4 / 6 / 5;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: 1fr;
-    /* grid-row-gap: 1em; */
     border-radius: 7.5px;
 }
 
 #clearContainer {
-    /* background-color: #F2690D; */
     box-shadow: 0px 0px 2px 0px;
     grid-area: 6 / 1 / 7 / 4;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
-    /* padding: 10px; */
-    /* border-radius: 10px; */
 }
 
 #equalsContainer {
-    /* background-color: #F2690D; */
     box-shadow: 0px 0px 2px 0px;
     grid-area: 6 / 4 / 7 / 5;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
-    /* padding: 10px; */
-    /* border-radius: 10px; */
 }
 
-
 button {
-    /* background-color: transparent; */
     background-color: rgba(23, 63, 179, 0.25);
 
 }
@@ -132,36 +112,25 @@ button:hover {
     border-radius: 0px 0px 0px 7.5px;
 }
 
-
-
 .number-button, .decimal-button, .backspace-button {
-    /* border-radius: 50%; */
     border: none;
     box-shadow: 0px 0px 2px 0px inset;
-
-
 }
 
 .operator-button {
-    /* border-radius: 50%; */
     box-shadow: 0px 0px 2px 0px inset;
     border: none;
-
-
 }
 
 .clear-button {
-    /* border-radius: 5px; */
     box-shadow: 0px 0px 2px 0px inset;
     background-color: hsla(352, 100%, 52%, 1.0);
     border: none;
-
 }
 
 .equal-button {
     box-shadow: 0px 0px 2px 0px inset;
-    border: none;
-    
+    border: none;  
 }
 
 .equal-button:hover {

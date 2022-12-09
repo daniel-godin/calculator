@@ -22,13 +22,12 @@ body {
 #calculatorContainer {
     padding: .75em;
     border-radius: 10px;
-    /* background-color:  */
     box-shadow: 0px 0px 10px 0px;
     display: grid;
     grid-template-rows: repeat(6, 1fr);
     grid-template-columns: repeat(4, 1fr);
     grid-gap: .5em;
-    height: 70vh;
+    height: 60vh;
     aspect-ratio: 4 / 6;
 }
 

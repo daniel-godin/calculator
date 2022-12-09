@@ -26,9 +26,11 @@ body {
     /* background-color:  */
     box-shadow: 0px 0px 10px 0px;
     display: grid;
-    grid-template-rows: repeat(7, 100px);
-    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-gap: .5em;
+    height: 70vh;
+    aspect-ratio: 4 / 6;
 
 
 
@@ -37,7 +39,7 @@ body {
 #mainDisplay {
     /* background-color: #F2690D; */
     box-shadow: 0px 0px 5px 0px inset;
-    grid-area: 1 / 1 / 3 / 5; /* row-start / col-start / row-end / col-end */
+    grid-area: 1 / 1 / 2 / 5; /* row-start / col-start / row-end / col-end */
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
@@ -51,30 +53,30 @@ body {
     /* background-color: hsla(24, 90%, 50%, .5); */
     box-shadow: 0px 0px 2px 0px;
     /* padding: 10px; */
-    grid-area: 3 / 1 / 7 / 4;
+    grid-area: 2 / 1 / 6 / 4;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(3, 1fr);
     /* grid-gap: 1em; */
-    /* border-radius: 10px; */
+    border-radius: 7.5px;
 }
 
 #operatorContainer {
     /* background-color: #F2690D; */
     box-shadow: 0px 0px 2px 0px;
     /* padding: 10px; */
-    grid-area: 3 / 4 / 7 / 5;
+    grid-area: 2 / 4 / 6 / 5;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: 1fr;
     /* grid-row-gap: 1em; */
-    /* border-radius: 10px; */
+    border-radius: 7.5px;
 }
 
 #clearContainer {
     /* background-color: #F2690D; */
     box-shadow: 0px 0px 2px 0px;
-    grid-area: 7 / 1 / 8 / 4;
+    grid-area: 6 / 1 / 7 / 4;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
@@ -85,7 +87,7 @@ body {
 #equalsContainer {
     /* background-color: #F2690D; */
     box-shadow: 0px 0px 2px 0px;
-    grid-area: 7 / 4 / 8 / 5;
+    grid-area: 6 / 4 / 7 / 5;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr;
@@ -93,6 +95,42 @@ body {
     /* border-radius: 10px; */
 }
 
+
+button {
+    /* background-color: transparent; */
+    background-color: rgba(23, 63, 179, 0.25);
+
+}
+
+button:hover {
+    transform: scale(1.05);
+    transition-duration: 150ms;
+    font-size: 2em;
+}
+
+#divideButton {
+    border-radius: 7.5px 7.5px 0px 0px;
+}
+
+#plusButton {
+    border-radius: 0px 0px 7.5px 7.5px;
+}
+
+#seven {
+    border-radius: 7.5px 0 0 0;
+}
+
+#nine {
+    border-radius: 0px 7.5px 0 0;
+}
+
+#backspaceButton {
+    border-radius: 0px 0px 7.5px 0px;
+}
+
+#decimalButton {
+    border-radius: 0px 0px 0px 7.5px;
+}
 
 
 
@@ -129,5 +167,5 @@ body {
 .equal-button:hover {
     transform: scale(1.05);
     transition-duration: 150ms;
-    font-size: 3em;
+    font-size: 2em;
 }
